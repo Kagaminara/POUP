@@ -1,6 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://csat26wpmg647"]
+[gd_scene load_steps=6 format=3 uid="uid://csat26wpmg647"]
 
 [ext_resource type="Script" path="res://scenes/UI/ui.gd" id="1_ifkjj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lh6eo"]
+font_size = 22
+font_color = Color(1, 1, 0.0941176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gtq72"]
+font_size = 20
+font_color = Color(1, 0.317647, 1, 1)
 
 [sub_resource type="FontFile" id="FontFile_jy3fk"]
 subpixel_positioning = 0
@@ -1905,23 +1913,82 @@ shadow_offset = Vector2(5.505, 5.875)
 script = ExtResource("1_ifkjj")
 
 [node name="LoserScreen" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="LoserLabel" type="Label" parent="LoserScreen"]
-offset_left = 472.0
 offset_top = 272.0
-offset_right = 679.0
+offset_right = 1152.0
 offset_bottom = 371.0
 theme_override_font_sizes/font_size = 72
-text = "LOSEr"
+text = "You just lost the game !"
 horizontal_alignment = 1
 
-[node name="RestartLabel" type="Label" parent="LoserScreen"]
+[node name="RestartButton" type="Button" parent="LoserScreen"]
+offset_left = 504.0
+offset_top = 368.0
+offset_right = 648.0
+offset_bottom = 408.0
+text = "Replay
+"
+
+[node name="HighScoreLabel" type="Label" parent="LoserScreen"]
+visible = false
 offset_left = 512.0
-offset_top = 352.0
-offset_right = 638.0
-offset_bottom = 375.0
-text = "press r to replay"
+offset_top = 112.0
+offset_right = 640.0
+offset_bottom = 136.0
+text = "High score:"
+horizontal_alignment = 1
+
+[node name="NewHighScoreLabel" type="Label" parent="LoserScreen/HighScoreLabel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 8.333
+anchor_right = 0.5
+anchor_bottom = 8.333
+offset_left = -72.0
+offset_top = -247.992
+offset_right = 71.0
+offset_bottom = -216.992
+text = "New record !"
+label_settings = SubResource("LabelSettings_lh6eo")
+horizontal_alignment = 1
+
+[node name="HighScore" type="Label" parent="LoserScreen/HighScoreLabel"]
+offset_left = -512.0
+offset_top = 32.0
+offset_right = 640.0
+offset_bottom = 72.0
+text = "12"
+label_settings = SubResource("LabelSettings_gtq72")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="LoserScreen/HighScoreLabel"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 119.0
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="LoserScreen/HighScoreLabel"]
+offset_left = -512.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 168.0
+text = "12"
+label_settings = SubResource("LabelSettings_gtq72")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="LoserScreen"]
+offset_left = 504.0
+offset_top = 424.0
+offset_right = 647.0
+offset_bottom = 464.0
+text = "Quit"
 
 [node name="StartScreen" type="Control" parent="."]
 visible = false
@@ -1951,22 +2018,22 @@ theme_override_font_sizes/font_size = 72
 text = "Hello"
 horizontal_alignment = 1
 
-[node name="RestartLabel" type="Label" parent="StartScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -161.5
-offset_top = 25.29
-offset_right = 161.5
-offset_bottom = 48.29
-grow_horizontal = 2
-grow_vertical = 2
-text = "press any key except escape and p to play"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="StartButton" type="Button" parent="StartScreen"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 36.0
+offset_right = 72.0
+offset_bottom = 75.0
+text = "Play
+"
+
+[node name="QuitButton" type="Button" parent="StartScreen"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 92.0
+offset_right = 71.0
+offset_bottom = 132.0
+text = "Quit"
 
 [node name="PlayScreen" type="Control" parent="."]
 layout_mode = 3
@@ -1980,3 +2047,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_s716e")
 
 [connection signal="start" from="." to="." method="_on_start"]
+[connection signal="pressed" from="LoserScreen/RestartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="LoserScreen/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartScreen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartScreen/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -4,18 +4,11 @@ extends Node
 var score
 var zenu_container: Node2D
 
-func exit():
-	get_tree().quit()
-
-func _input(event):
-	if (Input.is_action_just_pressed("escape")):
-		exit()
-
 func game_over():
 	remove_child(zenu_container)
 	$ScoreTimer.stop()
 	$ZanuTimer.stop()
-	$UI.game_over()
+	$UI.game_over(score)
 
 func new_game():
 	score = 0
