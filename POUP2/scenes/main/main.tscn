@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjhyjht77tobi"]
+
+[ext_resource type="Script" path="res://scenes/main/scripts/main.gd" id="1_hb8cf"]
+[ext_resource type="PackedScene" uid="uid://cq3x2j1u7qmlv" path="res://scenes/zanu/zanu.tscn" id="2_hllrd"]
+[ext_resource type="PackedScene" uid="uid://b2lnudukff5he" path="res://scenes/player/player.tscn" id="2_larkx"]
+[ext_resource type="PackedScene" uid="uid://csat26wpmg647" path="res://scenes/UI/ui.tscn" id="4_1xk2x"]
+
+[sub_resource type="Gradient" id="Gradient_p5id5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.465517)
+colors = PackedColorArray(0, 0, 0, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mtb7i"]
+gradient = SubResource("Gradient_p5id5")
+
+[sub_resource type="Curve2D" id="Curve2D_txskk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -8)
+}
+point_count = 6
+
+[node name="Main" type="Node"]
+script = ExtResource("1_hb8cf")
+mob_scene = ExtResource("2_hllrd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(568, 316)
+scale = Vector2(10000, 10000)
+texture = SubResource("GradientTexture1D_mtb7i")
+
+[node name="ZanuTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(575, 310)
+
+[node name="Player" parent="." instance=ExtResource("2_larkx")]
+
+[node name="ZanuPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_txskk")
+
+[node name="ZanuSpawnLocation" type="PathFollow2D" parent="ZanuPath"]
+position = Vector2(0, -8)
+rotation = 0.00694433
+
+[node name="UI" parent="." instance=ExtResource("4_1xk2x")]
+
+[connection signal="timeout" from="ZanuTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="enemy_kill" from="Player" to="." method="_on_player_enemy_kill"]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start" from="UI" to="." method="new_game"]

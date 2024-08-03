@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcu2ogv2g4ehc"]
+
+[ext_resource type="Texture2D" uid="uid://cj5iyi5py0au3" path="res://scenes/player/sprites/attack 1.png" id="1_toa0u"]
+[ext_resource type="Texture2D" uid="uid://dsnr33fwetfc" path="res://scenes/player/sprites/attack 2.png" id="2_i0hdy"]
+[ext_resource type="Texture2D" uid="uid://oyh3dw004jtm" path="res://scenes/player/sprites/attack 3.png" id="3_j1xix"]
+[ext_resource type="Script" path="res://scenes/player/scripts/attakc.gd" id="4_1d87o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p26ct"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": ExtResource("1_toa0u")
+}, {
+"duration": 0.3,
+"texture": ExtResource("2_i0hdy")
+}, {
+"duration": 1.8,
+"texture": ExtResource("3_j1xix")
+}],
+"loop": false,
+"name": &"basic",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6jke"]
+size = Vector2(48, 48)
+
+[node name="Attakc" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_1d87o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p26ct")
+animation = &"basic"
+autoplay = "basic"
+frame_progress = 0.996267
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e6jke")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="enemy_ded" from="." to="." method="_on_enemy_ded"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2lnudukff5he"]
+
+[ext_resource type="Script" path="res://scenes/player/scripts/player.gd" id="1_7ylwm"]
+[ext_resource type="PackedScene" uid="uid://bcu2ogv2g4ehc" path="res://scenes/player/attakc.tscn" id="2_o6732"]
+[ext_resource type="Texture2D" uid="uid://bkrjf0kt4ee3f" path="res://scenes/player/sprites/character-moving-A.png" id="2_ort88"]
+[ext_resource type="Texture2D" uid="uid://do235cxbg6yie" path="res://scenes/player/sprites/character-moving-B.png" id="3_6nsem"]
+[ext_resource type="Texture2D" uid="uid://byq4m2vagotuj" path="res://scenes/player/sprites/character A.png" id="4_rf5nx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wrq7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ort88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6nsem")
+}],
+"loop": true,
+"name": &"Deplacing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rf5nx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pyfhy"]
+
+[node name="Player" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_7ylwm")
+attack_scene = ExtResource("2_o6732")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_wrq7i")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pyfhy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
