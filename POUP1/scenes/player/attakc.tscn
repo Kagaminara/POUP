@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx6bplm57xlt3"]
+[gd_scene load_steps=7 format=3 uid="uid://bcu2ogv2g4ehc"]
 
 [ext_resource type="Texture2D" uid="uid://cj5iyi5py0au3" path="res://scenes/player/sprites/attack 1.png" id="1_toa0u"]
 [ext_resource type="Texture2D" uid="uid://dsnr33fwetfc" path="res://scenes/player/sprites/attack 2.png" id="2_i0hdy"]
