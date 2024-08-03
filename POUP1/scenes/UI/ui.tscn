@@ -1931,7 +1931,6 @@ text = "Replay
 "
 
 [node name="HighScoreLabel" type="Label" parent="LoserScreen"]
-visible = false
 offset_left = 512.0
 offset_top = 112.0
 offset_right = 640.0
@@ -1940,7 +1939,6 @@ text = "High score:"
 horizontal_alignment = 1
 
 [node name="NewHighScoreLabel" type="Label" parent="LoserScreen/HighScoreLabel"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -1956,6 +1954,7 @@ label_settings = SubResource("LabelSettings_lh6eo")
 horizontal_alignment = 1
 
 [node name="HighScore" type="Label" parent="LoserScreen/HighScoreLabel"]
+layout_mode = 0
 offset_left = -512.0
 offset_top = 32.0
 offset_right = 640.0
@@ -1974,6 +1973,7 @@ text = "Score:"
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="LoserScreen/HighScoreLabel"]
+layout_mode = 0
 offset_left = -512.0
 offset_top = 128.0
 offset_right = 640.0

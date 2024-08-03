@@ -8,6 +8,6 @@ A basic top down slasher with enemies and a main character.
 - [x] Enemy generation
 - [x] Slashing
   - [x] Scoring added to timer
-- [ ] Enemies orientation ("AI")
-- [ ] Enemy density over time
-- [ ] Decent menuing
+- [x] Enemies orientation ("AI")
+- [x] Enemy density over time
+- [x] Decent menuing
