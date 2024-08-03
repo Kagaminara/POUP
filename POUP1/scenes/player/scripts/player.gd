@@ -1,7 +1,9 @@
 extends Area2D
 signal hit
+signal enemy_kill
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
+@export var attack_scene: PackedScene
 var screen_size # Size of the game window.
 
 func start(pos):
@@ -26,7 +28,7 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 
-	$AnimatedSprite2D.rotation = velocity.rotated(90).angle()
+	rotation = velocity.normalized().rotated(Vector2.DOWN.angle()).angle()
 
 	if velocity.length() > 0:
 		$AnimatedSprite2D.animation = "Deplacing"
@@ -42,3 +44,16 @@ func _on_body_entered(body):
 	hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
+
+func on_enemy_ded():
+	enemy_kill.emit()
+
+func attack():
+	var attack = attack_scene.instantiate()
+	attack.position = Vector2.UP *20
+	attack.connect("enemy_ded", on_enemy_ded)
+	self.add_child(attack)
+
+func _input(event):
+	if (Input.is_action_just_pressed("attack")):
+		attack()
