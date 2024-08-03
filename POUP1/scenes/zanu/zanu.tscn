@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq3x2j1u7qmlv"]
+[gd_scene load_steps=6 format=3 uid="uid://cq3x2j1u7qmlv"]
 
 [ext_resource type="Script" path="res://scenes/zanu/scripts/zanu.gd" id="1_7oxa2"]
 [ext_resource type="Texture2D" uid="uid://b75bw04mhnlx1" path="res://scenes/zanu/sprites/Zanu.png" id="1_oxhvs"]
 [ext_resource type="Texture2D" uid="uid://cjt071j5yf8rg" path="res://scenes/zanu/sprites/mgs_exclam.png" id="3_6shch"]
+[ext_resource type="AudioStream" uid="uid://bfiivd6rjsfm8" path="res://scenes/zanu/sounds/MGS_alert.mp3" id="4_gtwlc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vf4w"]
 height = 38.0
@@ -30,6 +31,9 @@ texture = ExtResource("3_6shch")
 [node name="Timer" type="Timer" parent="Est-ce-une-boite"]
 wait_time = 0.5
 one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="Est-ce-une-boite"]
+stream = ExtResource("4_gtwlc")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Est-ce-une-boite/Timer" to="." method="_on_timer_timeout"]

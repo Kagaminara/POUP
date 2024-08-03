@@ -33,6 +33,8 @@ func _process(_delta):
 		$"Est-ce-une-boite".position = (Vector2.UP * 50).rotated(self.rotation * -1)
 		$"Est-ce-une-boite".show()
 		$"Est-ce-une-boite/Timer".start()
+		$"Est-ce-une-boite/Sound".play()
+		
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
