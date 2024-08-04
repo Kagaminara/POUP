@@ -11,6 +11,7 @@ func _ready():
 
 static func spawn(location: Transform2D, player: Node2D):
 	var mob = zanu_scene.instantiate()
+	mob.name = "Zanu"
 	
 	mob.Player = player
 	

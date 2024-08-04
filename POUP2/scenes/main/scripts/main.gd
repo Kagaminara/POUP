@@ -4,6 +4,9 @@ extends Node
 var score
 var zenu_container: Node2D
 
+func _ready():
+	$Player.transform = $StartPosition.transform
+
 func game_over():
 	remove_child(zenu_container)
 	$ScoreTimer.stop()
@@ -29,6 +32,7 @@ func _on_score_timer_timeout():
 	increase_score()
 
 func _on_mob_timer_timeout():
+	$ZanuTimer.wait_time = 5.0 / score
 	var mob = Zanu.spawn(mob_spawn_transform(), $Player)
 	# Spawn the mob by adding it to the Main scene.
 	zenu_container.add_child(mob)

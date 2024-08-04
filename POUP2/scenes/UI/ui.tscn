@@ -1912,29 +1912,54 @@ shadow_offset = Vector2(5.505, 5.875)
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_ifkjj")
 
-[node name="LoserScreen" type="CanvasLayer" parent="."]
+[node name="LoserScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LoserLabel" type="Label" parent="LoserScreen"]
-offset_top = 272.0
-offset_right = 1152.0
-offset_bottom = 371.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.5
+offset_top = -28.5
+offset_right = 405.5
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 72
 text = "You just lost the game !"
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="LoserScreen"]
-offset_left = 504.0
-offset_top = 368.0
-offset_right = 648.0
-offset_bottom = 408.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 84.0
+offset_right = 72.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Replay
 "
 
 [node name="HighScoreLabel" type="Label" parent="LoserScreen"]
-offset_left = 512.0
-offset_top = 112.0
-offset_right = 640.0
-offset_bottom = 136.0
+offset_left = -62.0
+offset_top = -188.0
+offset_right = 66.0
+offset_bottom = -164.0
 text = "High score:"
 horizontal_alignment = 1
 
@@ -1984,10 +2009,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="QuitButton" type="Button" parent="LoserScreen"]
-offset_left = 504.0
-offset_top = 424.0
-offset_right = 647.0
-offset_bottom = 464.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 146.0
+offset_right = 72.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
 
 [node name="StartScreen" type="Control" parent="."]
