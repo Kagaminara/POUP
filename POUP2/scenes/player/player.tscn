@@ -30,8 +30,8 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyfhy"]
 
-[node name="Player" type="Area2D"]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_7ylwm")
 attack_scene = ExtResource("2_o6732")
 metadata/_edit_group_ = true
@@ -43,5 +43,3 @@ animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pyfhy")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

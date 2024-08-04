@@ -1,6 +1,7 @@
-extends Area2D
+extends CharacterBody2D
 signal hit
 signal enemy_kill
+
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 @export var attack_scene: PackedScene
@@ -17,31 +18,20 @@ func _ready():
 	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+func _physics_process(delta):
+	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		print(collider.get_class())
+		print("I collided with ", collision.get_collider().name)
+		collision.get_collider()
+		if collider.name == "Zanu":
+			process_zanu_hit()
 
-	rotation = velocity.normalized().rotated(Vector2.DOWN.angle()).angle()
 
-	if velocity.length() > 0:
-		$AnimatedSprite2D.animation = "Deplacing"
-		velocity = velocity.normalized() * speed
-	else:
-		$AnimatedSprite2D.animation = "Idle"
-	$AnimatedSprite2D.play()
-
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
-
-func _on_body_entered(body):
-	hide()
+func process_zanu_hit():
+	self.hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
 
@@ -49,11 +39,21 @@ func on_enemy_ded():
 	enemy_kill.emit()
 
 func attack():
-	var attack = attack_scene.instantiate()
-	attack.position = Vector2.UP *20
-	attack.connect("enemy_ded", on_enemy_ded)
-	self.add_child(attack)
+	var attack_scn = attack_scene.instantiate()
+	attack_scn.position = Vector2.UP *20
+	attack_scn.connect("enemy_ded", on_enemy_ded)
+	self.add_child(attack_scn)
 
 func _input(event):
 	if (Input.is_action_just_pressed("attack")):
 		attack()
+
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = input_dir * speed
+	rotation = velocity.normalized().rotated(Vector2.DOWN.angle()).angle()
+
+	if velocity.length() > 0:
+		$AnimatedSprite2D.animation = "Deplacing"
+		velocity = velocity.normalized() * speed
+	else:
+		$AnimatedSprite2D.animation = "Idle"
