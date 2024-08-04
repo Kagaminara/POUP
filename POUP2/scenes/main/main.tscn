@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjhyjht77tobi"]
+[gd_scene load_steps=9 format=3 uid="uid://bjhyjht77tobi"]
 
 [ext_resource type="Script" path="res://scenes/main/scripts/main.gd" id="1_hb8cf"]
 [ext_resource type="PackedScene" uid="uid://cq3x2j1u7qmlv" path="res://scenes/zanu/zanu.tscn" id="2_hllrd"]
 [ext_resource type="PackedScene" uid="uid://b2lnudukff5he" path="res://scenes/player/player.tscn" id="2_larkx"]
 [ext_resource type="PackedScene" uid="uid://csat26wpmg647" path="res://scenes/UI/ui.tscn" id="4_1xk2x"]
+[ext_resource type="PackedScene" uid="uid://daecievtcjk5r" path="res://scenes/level/level.tscn" id="5_cobas"]
 
 [sub_resource type="Gradient" id="Gradient_p5id5"]
 interpolation_mode = 1
@@ -28,8 +29,10 @@ position = Vector2(568, 316)
 scale = Vector2(10000, 10000)
 texture = SubResource("GradientTexture1D_mtb7i")
 
+[node name="Level" parent="." instance=ExtResource("5_cobas")]
+
 [node name="ZanuTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 2.0
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -37,6 +40,8 @@ wait_time = 0.5
 position = Vector2(575, 310)
 
 [node name="Player" parent="." instance=ExtResource("2_larkx")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="ZanuPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_txskk")
