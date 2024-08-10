@@ -11,6 +11,7 @@ func _ready():
 
 static func spawn(location: Transform2D, player: Node2D):
 	var mob = zanu_scene.instantiate()
+	mob.name = "Zanu"
 	
 	mob.Player = player
 	
@@ -34,11 +35,9 @@ func _process(_delta):
 		$"Est-ce-une-boite".show()
 		$"Est-ce-une-boite/Timer".start()
 		$"Est-ce-une-boite/Sound".play()
-		
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-
 
 func _on_timer_timeout():
 	$"Est-ce-une-boite".hide()
