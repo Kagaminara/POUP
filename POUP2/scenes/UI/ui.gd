@@ -44,6 +44,8 @@ func exit():
 func _input(event):
 	if (Input.is_action_just_pressed("escape")):
 		exit()
+	if (Input.is_key_pressed(KEY_R)):
+		_on_start_button_pressed()
 
 func _on_quit_button_pressed():
 	exit()
