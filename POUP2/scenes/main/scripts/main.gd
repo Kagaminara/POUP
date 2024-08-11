@@ -18,6 +18,7 @@ func new_game():
 	zenu_container = Node2D.new()
 	add_child(zenu_container)
 	$ScoreTimer.start()
+	$ZanuTimer.wait_time = 5.0
 	$ZanuTimer.start()
 	$Player.start($StartPosition.position)
 

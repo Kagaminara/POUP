@@ -4,7 +4,7 @@ extends RigidBody2D
 var Player: Node2D
 
 const zanu_scene: PackedScene = preload("res://scenes/zanu/zanu.tscn")
-
+var suis_je_une_boite: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"Est-ce-une-boite".hide()
@@ -20,13 +20,11 @@ static func spawn(location: Transform2D, player: Node2D):
 	
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	mob.linear_velocity = velocity.rotated(mob.rotation)
-	
+	mob.suis_je_une_boite = randi_range(0, 100)
 	return mob
 
 func _process(_delta):
-	var chance = randi_range(0, 100)
-	
-	if chance > 99:
+	if self.suis_je_une_boite <= 0:
 		self.look_at(Player.position)
 		self.linear_velocity = global_transform.x * randf_range(150.0, 350.0)
 		
@@ -35,6 +33,9 @@ func _process(_delta):
 		$"Est-ce-une-boite".show()
 		$"Est-ce-une-boite/Timer".start()
 		$"Est-ce-une-boite/Sound".play()
+		self.suis_je_une_boite = randi_range(0, 100)
+	
+	self.suis_je_une_boite -= 1
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
