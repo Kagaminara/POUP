@@ -7,7 +7,7 @@ Showcase a handcrafted level containing:
 - [ ] Tilemap
 - [ ] Abilities (inc: resources / cooldown / animation )
   - [ ] Dash
-  - [ ] Light attack
+  - [x] Light attack
   - [ ] Heavy attack
 
 ## POUP1
