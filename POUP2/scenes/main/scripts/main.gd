@@ -30,11 +30,14 @@ func _on_player_enemy_kill():
 	increase_score()
 
 func _on_score_timer_timeout():
-	increase_score()
+	# for now disable timer score update to prevent score and spawn rate from getting out of hand
+	# increase_score()
+	pass
 
 func _on_mob_timer_timeout():
-	$ZanuTimer.wait_time = 5.0 / score
+	$ZanuTimer.wait_time = 5.0 / max(score,1)
 	var mob = Zanu.spawn(mob_spawn_transform(), $Player)
+	mob.connect("enemy_ded", _on_player_enemy_kill)
 	# Spawn the mob by adding it to the Main scene.
 	zenu_container.add_child(mob)
 
