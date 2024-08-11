@@ -1,6 +1,5 @@
 extends CharacterBody2D
 signal hit
-signal enemy_kill
 
 @export var speed := 400 # How fast the player will move (pixels/sec).
 @export var attack_scene: PackedScene
@@ -47,14 +46,10 @@ func process_zanu_hit():
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func on_enemy_ded():
-	enemy_kill.emit()
-
 func attack():
 	if (is_instance_valid(current_attack)):
 		return
 	var attack_scn := attack_scene.instantiate()
-	attack_scn.connect("enemy_ded", on_enemy_ded)
 	self.add_child(attack_scn)
 	current_attack = attack_scn
 

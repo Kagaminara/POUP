@@ -54,6 +54,5 @@ rotation = -0.180078
 
 [connection signal="timeout" from="ZanuTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="enemy_kill" from="Player" to="." method="_on_player_enemy_kill"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="start" from="UI" to="." method="new_game"]

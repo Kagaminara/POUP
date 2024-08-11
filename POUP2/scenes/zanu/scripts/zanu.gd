@@ -1,6 +1,8 @@
 class_name Zanu
 extends RigidBody2D
 
+signal enemy_ded
+
 var Player: Node2D
 
 const zanu_scene: PackedScene = preload("res://scenes/zanu/zanu.tscn")
@@ -8,6 +10,11 @@ var suis_je_une_boite: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"Est-ce-une-boite".hide()
+
+func hit(amount:int):
+	enemy_ded.emit()
+	self.queue_free()
+	
 
 static func spawn(location: Transform2D, player: Node2D):
 	var mob = zanu_scene.instantiate()
