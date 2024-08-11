@@ -4,7 +4,7 @@ This repo is a list of concepts intented to be integrated into Psychic Octo Umbr
 
 Showcase a handcrafted level containing:
 
-- [ ] Tilemap
+- [x] Tilemap
 - [ ] Abilities (inc: resources / cooldown / animation )
   - [ ] Dash
   - [ ] Light attack
