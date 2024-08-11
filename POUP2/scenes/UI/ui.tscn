@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://csat26wpmg647"]
+[gd_scene load_steps=7 format=3 uid="uid://csat26wpmg647"]
 
 [ext_resource type="Script" path="res://scenes/UI/ui.gd" id="1_ifkjj"]
+[ext_resource type="Script" path="res://scenes/UI/scripts/FPSCounter.gd" id="2_uyn6x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh6eo"]
 font_size = 22
@@ -2079,6 +2080,12 @@ offset_right = 142.0
 offset_bottom = 175.0
 text = "0"
 label_settings = SubResource("LabelSettings_s716e")
+
+[node name="FPSCounter" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_uyn6x")
 
 [connection signal="start" from="." to="." method="_on_start"]
 [connection signal="pressed" from="LoserScreen/RestartButton" to="." method="_on_start_button_pressed"]
