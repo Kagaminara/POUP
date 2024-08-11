@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2lnudukff5he"]
 
 [ext_resource type="Script" path="res://scenes/player/scripts/player.gd" id="1_7ylwm"]
-[ext_resource type="PackedScene" uid="uid://bcu2ogv2g4ehc" path="res://scenes/player/attakc.tscn" id="2_o6732"]
 [ext_resource type="Texture2D" uid="uid://bkrjf0kt4ee3f" path="res://scenes/player/sprites/character-moving-A.png" id="2_ort88"]
+[ext_resource type="PackedScene" uid="uid://j7emeppr5woi" path="res://scenes/attakcs/light_attakc/attakc.tscn" id="2_xx7hq"]
 [ext_resource type="Texture2D" uid="uid://do235cxbg6yie" path="res://scenes/player/sprites/character-moving-B.png" id="3_6nsem"]
 [ext_resource type="Texture2D" uid="uid://byq4m2vagotuj" path="res://scenes/player/sprites/character A.png" id="4_rf5nx"]
 
@@ -34,7 +34,7 @@ animations = [{
 collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_7ylwm")
-attack_scene = ExtResource("2_o6732")
+attack_scene = ExtResource("2_xx7hq")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

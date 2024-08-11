@@ -1956,6 +1956,7 @@ text = "Replay
 "
 
 [node name="HighScoreLabel" type="Label" parent="LoserScreen"]
+layout_mode = 0
 offset_left = -62.0
 offset_top = -188.0
 offset_right = 66.0

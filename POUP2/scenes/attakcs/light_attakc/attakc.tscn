@@ -1,0 +1,190 @@
+[gd_scene load_steps=8 format=3 uid="uid://j7emeppr5woi"]
+
+[ext_resource type="Script" path="res://scenes/attakcs/light_attakc/scripts/attakc.gd" id="1_yalb5"]
+[ext_resource type="Texture2D" uid="uid://b7kom0fnbwxcp" path="res://scenes/attakcs/light_attakc/sprites/epe.png" id="2_2git4"]
+[ext_resource type="Texture2D" uid="uid://bapf30c7llm2j" path="res://scenes/attakcs/light_attakc/sprites/trail.png" id="2_m7pnc"]
+
+[sub_resource type="Animation" id="Animation_q6474"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attakc/polygons:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attakc/polygons:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attakc:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attakc/polygons/trail:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attakc/polygons/trail:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1.5, 1.2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attakc/polygons/trail:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.181514]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("colitrail/Penillision:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d7sie"]
+resource_name = "attakc"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attakc:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-2.21657, -1.78373, 1.75929]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attakc/polygons/trail:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("colitrail/Penillision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tmig"]
+_data = {
+"RESET": SubResource("Animation_q6474"),
+"attakc": SubResource("Animation_d7sie")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmn8b"]
+size = Vector2(86, 200)
+
+[node name="AttakcLight" type="Node2D"]
+script = ExtResource("1_yalb5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2tmig")
+}
+autoplay = "attakc"
+
+[node name="Attakc" type="Node2D" parent="."]
+
+[node name="polygons" type="Area2D" parent="Attakc"]
+position = Vector2(0, -23)
+scale = Vector2(0.1, 0.1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attakc/polygons"]
+visible = false
+position = Vector2(1, -39)
+shape = SubResource("RectangleShape2D_pmn8b")
+disabled = true
+
+[node name="trail" type="Sprite2D" parent="Attakc/polygons"]
+position = Vector2(-136.42, 21.45)
+rotation = -0.181514
+scale = Vector2(-1.5, 1.2)
+texture = ExtResource("2_m7pnc")
+
+[node name="epe" type="Sprite2D" parent="Attakc/polygons"]
+scale = Vector2(-1, 1)
+texture = ExtResource("2_2git4")
+
+[node name="colitrail" type="Area2D" parent="."]
+visible = false
+position = Vector2(-3, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Penillision" type="CollisionPolygon2D" parent="colitrail"]
+position = Vector2(-3, -1)
+scale = Vector2(1.22266, 1.22266)
+polygon = PackedVector2Array(26, -8, 20, -5, 21, 0, 29, 2, 31, -5, 34, -6, 34, -16, 27, -25, 8.9968, -31.0799, -8.17892, -27.8083, -20, -17, -23, -8, -18, -3, -8, -12, -4, -15, 3, -17, 9, -17, 19, -14)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Attakc/polygons" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="colitrail" to="." method="_on_body_entered"]

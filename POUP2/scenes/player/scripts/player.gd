@@ -5,6 +5,7 @@ signal enemy_kill
 @export var speed := 400 # How fast the player will move (pixels/sec).
 @export var attack_scene: PackedScene
 var fixed := true
+var current_attack: Node2D
 
 func start(pos):
 	position = pos
@@ -50,10 +51,12 @@ func on_enemy_ded():
 	enemy_kill.emit()
 
 func attack():
+	if (is_instance_valid(current_attack)):
+		return
 	var attack_scn := attack_scene.instantiate()
-	attack_scn.position = Vector2.UP *20
 	attack_scn.connect("enemy_ded", on_enemy_ded)
 	self.add_child(attack_scn)
+	current_attack = attack_scn
 
 func _input(event):
 	if (Input.is_action_just_pressed("attack")):
