@@ -9,6 +9,7 @@ Showcase a handcrafted level containing:
   - [ ] Dash
   - [x] Light attack
   - [ ] Heavy attack
+  - [ ] Experiment with other types of abilities
 
 ## POUP1
 
