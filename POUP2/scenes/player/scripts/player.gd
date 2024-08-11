@@ -7,6 +7,14 @@ signal enemy_kill
 var fixed := true
 var current_attack: Node2D
 
+# Dash variables
+@export var dash_multiplier: int = 0
+@export var dash_cooldown: float = 0.8
+@export var invul_time: float = 0.5
+var is_dashing := false
+var dash_current_cooldown: float = 0
+
+
 func start(pos):
 	position = pos
 	show()
@@ -24,8 +32,17 @@ func _physics_process(delta):
 		return
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+
+	var current_speed = speed
 	
-	self.velocity = self.velocity.lerp(input_dir * speed, delta * 30)
+	# Dash
+	if (input_dir != Vector2.ZERO and is_dashing):
+		current_speed = dash_multiplier * speed
+		dash_current_cooldown = 0
+		is_dashing = false
+		$".".collision_mask &= 0b11111011
+
+	self.velocity = self.velocity.lerp(input_dir * current_speed, delta * 30)
 	rotation = lerp(rotation, velocity.rotated(Vector2.DOWN.angle()).angle(), delta * 30)
 
 	if velocity.length() > 0.1:
@@ -61,3 +78,13 @@ func attack():
 func _input(event):
 	if (Input.is_action_just_pressed("attack")):
 		attack()
+	if (Input.is_action_just_pressed("dash") and dash_current_cooldown >= dash_cooldown):
+		is_dashing = true
+	if (Input.is_action_just_released("dash")):
+		is_dashing = false
+
+
+func _process(delta):
+	dash_current_cooldown += delta
+	if (dash_current_cooldown >= invul_time):
+		$".".collision_mask |= 0b00000100

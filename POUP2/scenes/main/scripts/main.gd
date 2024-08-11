@@ -46,3 +46,4 @@ func mob_spawn_transform() -> Transform2D:
 	var direction = mob_spawn_location.rotation + PI / 2
 
 	return Transform2D(direction, mob_spawn_location.position)
+

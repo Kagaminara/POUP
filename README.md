@@ -6,7 +6,7 @@ Showcase a handcrafted level containing:
 
 - [x] Tilemap
 - [ ] Abilities (inc: resources / cooldown / animation )
-  - [ ] Dash
+  - [x] Dash
   - [x] Light attack
   - [ ] Heavy attack
   - [ ] Experiment with other types of abilities
